@@ -1,0 +1,67 @@
+#include <SoftSerial.h>
+SoftSerial VFD(2,3); // RX, TX
+int font = 0;
+void setup()
+
+
+
+{
+  VFD.begin(9600);
+  
+}
+
+void loop()
+{
+
+  
+  VFD.print("\033[2J");
+  VFD.print("\033[1;2H");
+  VFD.print("text 1");
+      delay(1500);
+ // VFD.print("\033[2J"); //clear
+  VFD.print("\033[2;4H");
+  VFD.print("text 2");
+  //VFD.print(0x32);
+  //VFD.print(0x4A);
+      delay(2000);
+
+  VFD.print("\033[2J");
+  VFD.print("\033[1;2H");
+  VFD.print("            ");
+      delay(1000);
+
+  VFD.print("\033[2J");
+  VFD.print("\033[1;2H");
+  VFD.print("text 3");
+      delay(1500);
+//  VFD.print("\033[2J"); //clear
+  VFD.print("\033[2;4H");
+  VFD.print("text 4");
+  //VFD.print(0x32);
+  //VFD.print(0x4A);
+      delay(2000);
+
+  VFD.print("\033[2J");
+  VFD.print("\033[1;2H");
+  VFD.print("            ");
+      delay(1000);
+
+   font++;
+  switch (font) {
+    case 6: font = 0;
+    case 0: VFD.print("\033[0m"); //OFF  
+    break;
+    case 1: VFD.print("\033[1m"); // BOLD  
+    break;
+    case 2: VFD.print("\033[2m");  //LOWINTENS
+    break;
+    case 3: VFD.print("\033[4m");   //UNDERLINE
+    break;
+    case 4: VFD.print("\033[5m");  //BLINK  
+    break;
+    case 5: VFD.print("\033[7m");  //REVERSE 
+    break;
+  }
+ 
+
+}
